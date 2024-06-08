@@ -1,0 +1,216 @@
+{
+  "@context": {
+    "@language": "en",
+    "@vocab": "https://schema.org/",
+    "citeAs": "cr:citeAs",
+    "column": "cr:column",
+    "conformsTo": "dct:conformsTo",
+    "cr": "http://mlcommons.org/croissant/",
+    "rai": "http://mlcommons.org/croissant/RAI/",
+    "data": {
+      "@id": "cr:data",
+      "@type": "@json"
+    },
+    "dataType": {
+      "@id": "cr:dataType",
+      "@type": "@vocab"
+    },
+    "dct": "http://purl.org/dc/terms/",
+    "examples": {
+      "@id": "cr:examples",
+      "@type": "@json"
+    },
+    "extract": "cr:extract",
+    "field": "cr:field",
+    "fileProperty": "cr:fileProperty",
+    "fileObject": "cr:fileObject",
+    "fileSet": "cr:fileSet",
+    "format": "cr:format",
+    "includes": "cr:includes",
+    "isLiveDataset": "cr:isLiveDataset",
+    "jsonPath": "cr:jsonPath",
+    "key": "cr:key",
+    "md5": "cr:md5",
+    "parentField": "cr:parentField",
+    "path": "cr:path",
+    "recordSet": "cr:recordSet",
+    "references": "cr:references",
+    "regex": "cr:regex",
+    "repeated": "cr:repeated",
+    "replace": "cr:replace",
+    "sc": "https://schema.org/",
+    "separator": "cr:separator",
+    "source": "cr:source",
+    "subField": "cr:subField",
+    "transform": "cr:transform"
+  },
+  "@type": "sc:Dataset",
+  "name": "HateDebias",
+  "description": "The dataset HateDebias was created to address the problem of detecting and mitigating biases in hate speech detection models, particularly under conditions that simulate real-world scenarios with continuous and varying biases. The goal is to provide a benchmark that evaluates the ability of hate speech detection models to adapt to different types of biases, ensuring they can maintain high performance and fairness even as new biases emerge over time.",
+  "conformsTo": "http://mlcommons.org/croissant/1.0",
+  "url": "https://github.com/IIP-Lab-2024/HateDebias",
+  "distribution": [
+    {
+      "@type": "cr:FileObject",
+      "@id": "github-repository",
+      "name": "github-repository",
+      "description": "HateDebias repository on GitHub.",
+      "contentUrl": "https://github.com/IIP-Lab-2024/HateDebias",
+      "encodingFormat": "git+https",
+      "sha256": "main"
+    },
+    {
+      "@type": "cr:FileSet",
+      "@id": "tsv-files",
+      "name": "tsv-files",
+      "description": "Tsv files are hosted on the GitHub repository.",
+      "containedIn": {
+        "@id": "github-repository"
+      },
+      "encodingFormat": "text/tab-separated-values",
+      "includes": "dataset/*.tsv"
+    }
+  ],
+  "recordSet": [
+    {
+      "@type": "cr:RecordSet",
+      "@id": "tsv",
+      "name": "tsv",
+      "field": [
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/tid",
+          "name": "tid",
+          "description": "The value is the id of the text.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "tid"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/uid",
+          "name": "uid",
+          "description": "The value is the id of the user.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "uid"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/text",
+          "name": "text",
+          "description": "The text field corresponds to the content of the example, obtained from a Twitter dataset specifically for hate speech classification. ",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "text"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/date",
+          "name": "date",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "date"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/gender",
+          "name": "gender",
+          "description": "The value is converted into binary format, where 1 denotes female and 0 indicates male.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "uid"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/age",
+          "name": "age",
+          "description": "The value is converted into binary format, where 1 denotes the median and 0 indicates the elder.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "age"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/country",
+          "name": "country",
+          "description": "The value is converted into binary format, where 1 denotes US and 0 indicates non-US.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "country"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/ethnicity",
+          "name": "ethnicity",
+          "description": "The value is converted into binary format, where 1 denotes non-white and 0 indicates white.",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "ethnicity"
+            }
+          }
+        },
+        {
+          "@type": "cr:Field",
+          "@id": "tsv/label",
+          "name": "label",
+          "dataType": "sc:Text",
+          "source": {
+            "fileSet": {
+              "@id": "tsv-files"
+            },
+            "extract": {
+              "column": "label"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
